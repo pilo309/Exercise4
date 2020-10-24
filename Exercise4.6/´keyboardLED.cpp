@@ -1,64 +1,25 @@
 #include "keyboardLED.h"
-#include <conio.h>
 
 void keyboardLED(void)
 {
-	char ledNumber;
-	int prevLED = 0;
+	int tast;							//da vi vil have askeværdi er det integer
+	int ledOnNumber = 0;
+	int ledOffNumber = 0;
 	
 	while (1)
 
 	{
-
 		printf_s("Enter LED number:\n");
 
-		ledNumber = _getch();
+		tast = _getch();			//indsætter askeværdi fra tastatur
 
-		switch (ledNumber)
-		{
-		case '1':
-			ledOn(1);
-			ledOff(prevLED);
-			prevLED = 1;
-			break;
+		ledOff(ledOnNumber);		// slukker tidligere led der var tændt
 
-		case '2':
-			ledOn(2);
-			ledOff(prevLED);
-			prevLED = 2;
-			break;
+	if (tast == 48)					// hvis der trykkes 48 som askeværdi (0 i decimal)
+		exit(1);					//loop brydes og program termineres
 
-		case '3':
-			ledOn(3);
-			ledOff(prevLED);
-			prevLED = 3;
-			break;
-
-		case '4':
-			ledOn(4);
-			ledOff(prevLED);
-			prevLED = 4;
-			break;
-
-		case '5':
-			ledOn(5);
-			ledOff(prevLED);
-			prevLED = 5;
-			break;
-
-		case '6':
-			ledOn(6);
-			ledOff(prevLED);
-			prevLED = 6;
-			break;
-
-		case '0':
-		{
-			for (size_t i = 0; i <= 6; i++)
-				ledOff(i);
-			break;
-		}
-
-		}
+		ledOnNumber = tast - 48;		//substraherer askeværdien (48) af 0 fra decimaltallet
+										//dvs. at tastes bliver regnestykket 49-48 = 1 
+		ledOn(ledOnNumber);
 	}
 }

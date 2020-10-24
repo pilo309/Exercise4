@@ -37,7 +37,6 @@ int main(void)
 	printf("Connected to Raspberry Pi\n");
 	// To do your code
 
-
 	keyboardLED();
 
 	return 0;
